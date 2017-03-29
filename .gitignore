@@ -1,2 +1,9 @@
-.sass-cache/
+### Sass ###
+.sass-cache
 *.css.map
+sass/bourbon
+
+### Bootstrap sass ###
+assets/fonts
+assets/stylesheets
+assets/javascripts
