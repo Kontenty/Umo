@@ -1,0 +1,80 @@
+header {
+    width: 100%;
+    height: 100vh;
+    background: pink;
+    background-image: url("../img/telescope-science.jpg");
+    background-position: 0 -50px;
+    background-size: cover;
+    // background-position: top center;
+    // display: flex;
+    // flex-direction: column;
+    // top: 0;
+    h1{
+        text-align: center;
+        font-family: "magneto", "Lobster";
+        @include responsive-font(5vw, 40px, 80px);
+        margin-top: 15vh;
+    }
+    .glyphicon {
+        font-size: 40px;
+        cursor: hand;
+        position: relative;
+        top: 300px;
+        animation: hand 2s cubic-bezier(.17,.37,.43,.67) infinite;
+        transition: opacity;
+    }
+    @keyframes hand {
+        0% {transform: translate(0,0); opacity: 0.9;}
+        70% {transform: translate(0,15px); opacity: 0.9;}
+        100% {transform: translate(0,0); opacity: 0.5;}
+    }
+}
+section#project {
+    margin-top: 50px;
+}
+section#about-us{
+    @extend %s-well;
+    .face-big {
+        width: 300px;
+        height: 300px;
+        border: 1px solid rgba(#000, 0.1);
+        border-radius: 50%;
+        background-image: url("../img/Marlena.jpg");
+        background-position: -70px 0px;
+        background-size: 450px;
+        margin-bottom: 50px;
+        @include card(3);
+        @include transition(all 500ms $ease-in-out-cubic);
+        &:hover{
+            @include card(5);
+        }
+    }
+    .face-small {
+        width: 150px;
+        height: 150px;
+        border: 1px solid rgba(#000, 0.1);
+        margin: 0 auto 50px;
+        border-radius: 50%;
+        @include card(3);
+    }
+}
+
+section#lessons {
+    @extend %s-well;
+
+    .lesson-img {
+        height: 320px;
+        width: 90%;
+        margin: 20px auto;
+         border: 1px solid rgba(#000, 0.1);
+        @include card(2);
+    }
+    
+}
+
+section#reservation {
+    @extend %s-well;
+    .tabs-left > li{
+        width: 100%;
+    }
+}
