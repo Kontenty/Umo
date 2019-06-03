@@ -1,80 +1,691 @@
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: $main-color;
+  z-index: 100;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+body.loaded #preloader {
+  opacity: 0;
+  visibility: hidden;
+}
+.loader {
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: $yellow;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+.loader:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: $yellow;
+  -webkit-animation: spin 3s linear infinite;
+  animation: spin 3s linear infinite;
+}
+
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: $yellow;
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* ---- HEADER ----*/
 header {
-    width: 100%;
-    height: 100vh;
-    background: pink;
-    background-image: url("../img/telescope-science.jpg");
-    background-position: 0 -50px;
-    background-size: cover;
-    // background-position: top center;
-    // display: flex;
-    // flex-direction: column;
-    // top: 0;
-    h1{
-        text-align: center;
-        font-family: "magneto", "Lobster";
-        @include responsive-font(5vw, 40px, 80px);
-        margin-top: 15vh;
+  width: 100%;
+  height: 100vh;
+  background-color: #060e1e;
+  background-image: url("../images/bg.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  h1 {
+    position: absolute;
+    color: white;
+    text-align: center;
+    font-family: "Amatic SC";
+    right: 0;
+    left: 0;
+    margin: 45vh auto 0;
+    // text-shadow: 0 0 10px white;
+    @include responsive-font(6vw, 40px, 80px);
+    letter-spacing: 5px;
+    // top: 45vh;
+    // margin-left: -70px;
+    // animation: hand 2s cubic-bezier(.17,.37,.43,.67) infinite;
+    //  animation: neon 2s cubic-bezier(.17,.37,.43,.67);
+    animation: neon 3s ease-in-out;
+    animation-fill-mode: forwards;
+    @keyframes neon {
+      15% {
+        text-shadow: 0 0 12px white;
+      }
+      20% {
+        text-shadow: none;
+      }
+      35% {
+        text-shadow: 0 0 20px white;
+      }
+      45% {
+        text-shadow: none;
+      }
+      70% {
+        text-shadow: 0 0 30px white;
+      }
+      100% {
+        text-shadow: 0 0 10px white;
+      }
     }
+  }
+  #hand-pointer {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 2vh;
+    width: 70px;
+    height: 70px;
+    padding-left: 2vw;
     .glyphicon {
-        font-size: 40px;
-        cursor: hand;
-        position: relative;
-        top: 300px;
-        animation: hand 2s cubic-bezier(.17,.37,.43,.67) infinite;
-        transition: opacity;
+      font-size: 60px;
+      color: white;
+      cursor: pointer;
+      animation: hand 2s cubic-bezier(0.17, 0.37, 0.43, 0.67) infinite;
+      transition: opacity;
+      &:hover {
+        opacity: 1;
+        text-shadow: 0 0 10px white;
+      }
     }
     @keyframes hand {
-        0% {transform: translate(0,0); opacity: 0.9;}
-        70% {transform: translate(0,15px); opacity: 0.9;}
-        100% {transform: translate(0,0); opacity: 0.5;}
+      0% {
+        transform: translate(0, 0);
+        opacity: 0.9;
+      }
+      70% {
+        transform: translate(0, 15px);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translate(0, 0);
+        opacity: 0.5;
+      }
     }
+  }
+  @media (max-width: 768px) {
+    // background-size: cover;
+    height: 60vh;
+    background-size: 110%;
+    background-position: center 2vh;
+    h1 {
+      margin-top: 35vh;
+    }
+    #hand-pointer {
+      bottom: 0;
+      height: 50px;
+      width: 50px;
+      .glyphicon {
+        font-size: 30px;
+      }
+    }
+  }
 }
-section#project {
-    margin-top: 50px;
-}
-section#about-us{
-    @extend %s-well;
-    .face-big {
-        width: 300px;
-        height: 300px;
-        border: 1px solid rgba(#000, 0.1);
-        border-radius: 50%;
-        background-image: url("../img/Marlena.jpg");
-        background-position: -70px 0px;
-        background-size: 450px;
-        margin-bottom: 50px;
-        @include card(3);
-        @include transition(all 500ms $ease-in-out-cubic);
-        &:hover{
-            @include card(5);
+/* ---- NAVIGATION ---- */
+nav {
+  z-index: 10;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  padding: 10px 5px 5px 10px;
+  // height: 100vh;
+  // width: 140px;
+  transition: all 300ms;
+  #nav-btn-container {
+    text-align: center;
+    cursor: pointer;
+    background-color: rgba($bg-color, 0.3);
+    height: 40px;
+    width: 40px;
+    margin-bottom: 5px;
+    border-radius: 50%;
+    opacity: 0.7;
+    transition: all 300ms;
+    &[aria-expanded="true"] {
+      transform: rotate(90deg);
+    }
+    &:hover {
+      opacity: 1;
+      #nav-btn {
+        color: ligthen($main-color2, 15);
+      }
+    }
+    &.turn-white {
+      background-color: rgba($bg-color, 0.1);
+      color: $yellow;
+    }
+  }
+  #nav-btn {
+    font-size: 32px;
+    line-height: 110%;
+    transition: all 300ms;
+  }
+  #collapseNav {
+    transition: all 300ms;
+  }
+  #nav-menu {
+    background-color: rgba($bg-color, 0.3);
+    border-radius: 5px;
+    padding: 5px;
+    transition: all 300ms;
+    &.turn-white {
+      a {
+        color: #ccc;
+        &:hover {
+          background-color: $main-color2;
+          color: $bg-color;
         }
+      }
     }
-    .face-small {
-        width: 150px;
-        height: 150px;
-        border: 1px solid rgba(#000, 0.1);
-        margin: 0 auto 50px;
-        border-radius: 50%;
-        @include card(3);
+  }
+  @media (max-width: 1350px) {
+    padding-left: 0;
+    padding-top: 5px;
+    #nav-menu {
+      background-color: rgba($bg-color, 0.6);
     }
+  }
 }
+/* **** O PROJEKCIE **** */
+section#project {
+  @extend %s-well;
+  margin-top: 50px;
+  img {
+    @media (min-width: $screen-md) {
+      margin-top: 50px;
+    }
+  }
+  p {
+    text-align: justify;
+  }
+}
+#institutions {
+  background-image: url(../images/blue.jpg);
+  background-position: 0px 0px;
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+  margin: 80px 0 0;
+  box-shadow: inset 0 8px 7px -6px rgba(0, 0, 0, 0.3),
+    inset 0 -8px 7px -6px rgba(0, 0, 0, 0.3);
 
+  .institution-pane {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .img-logo1 {
+    height: 160px;
+  }
+  .img-logo2 {
+    height: 90px;
+  }
+  span {
+    font-family: "Arial black";
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(99, 100, 102);
+    margin-top: 10px;
+  }
+}
+/* ***** O NAS ***** */
+section#about-us {
+  @extend %s-well;
+  h2#motto {
+    font-family: "Fredericka the Great";
+    @include responsive-font(2vw, 20px, 30px);
+    text-align: center;
+    position: relative;
+    top: -32px;
+    margin-bottom: 0px;
+    #wstawka2 {
+      color: tint($main-color, 40);
+    }
+  }
+  .face-big,
+  .face-small {
+    position: relative;
+    border: 2px solid;
+    border-color: tint($main-color, 50);
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    // @include transition(all 500ms $ease-in-out-cubic);
+    &:hover {
+      .blind {
+        top: 0%;
+        opacity: 1;
+      }
+    }
+  }
+  .face-big {
+    width: 260px;
+    height: 260px;
+    background-image: url("../images/mkzf.jpg");
+    background-position: 0px -50px;
+    background-size: 270px;
+    margin-bottom: 50px;
+    @include card(3);
+    &:hover {
+      @include card(5);
+    }
+    filter: grayscale(90%) blur(5px);
+    @include transition(all 1000ms $ease-in-out-cubic);
+    // transition: all 1000ms ease-in-out;
+
+    &.is-showing {
+      filter: none;
+    }
+  }
+  .face-small {
+    height: 220px;
+    width: 220px;
+    margin: 0 auto 50px;
+    background-position: center center;
+    background-size: 220px;
+    @include card(2);
+    &:hover {
+      @include card(4);
+    }
+    opacity: 0;
+    transform: translate(2px, 8px);
+    transition: all 1.2s ease-in-out;
+    &.is-showing {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+  .blind {
+    // @include size(100%);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    text-align: center;
+    background-color: fade-out($main-color, 0.3);
+    color: white;
+    font-family: "Amatic SC";
+    font-size: 36px;
+    letter-spacing: 2px;
+    border-radius: 50%;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include transition(all 500ms $ease-in-out-cubic);
+  }
+  #aboutUsModal {
+    p {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+  }
+}
+/* ===== LEKCJE ===== */
 section#lessons {
-    @extend %s-well;
-
-    .lesson-img {
-        height: 320px;
-        width: 90%;
-        margin: 20px auto;
-         border: 1px solid rgba(#000, 0.1);
-        @include card(2);
+  background-color: $yellow;
+  overflow-x: hidden;
+  // @include curve-border(200px, 20px, 10px);
+  min-height: 97vh;
+  // border-top: 2px solid $yellow2;
+  // border-bottom: 1px solid $yellow2;
+  @extend %subtle-shadow;
+  margin-top: 50px;
+  border-right: none;
+  border-left: none;
+  padding: 20px 0;
+  h1 {
+    position: relative;
+    #wstawka {
+      position: absolute;
+      left: 50.5%;
     }
-    
+  }
+  .lessons-belt {
+    width: 200%;
+    position: relative;
+    left: 0%;
+    transition: all 800ms;
+    &.slided {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+  .lessons-thumb-wrap,
+  .lessons-content-wrap {
+    width: 50%;
+    float: left;
+  }
+  .lessons-thumb-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+  @for $i from 1 through 8 {
+    #lesson-unit#{$i} {
+      .bg-image {
+        background-image: url(../images/lekcje/bg#{$i}.jpg);
+      }
+      .lesson-icon {
+        background-image: url(../images/lekcje/ico#{$i}.png);
+      }
+    }
+  }
+  .lesson-unit {
+    // height: 320px;
+    width: 250px;
+    // border-radius: 5px;
+    background-color: #fff;
+    // margin: 20px auto;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    @include curve-border(200px, 150px, 7px);
+    border: 2px solid $main-color2;
+    margin: 0 auto 50px;
+    // @include card(2);
+    @extend %subtle-shadow;
+    transition: all 300ms;
+    &:hover {
+      @include curve-border(250px, 220px, 20px);
+      .bg-image {
+        // background-size: 115%;
+        background-position: 70% 50%;
+      }
+    }
+    .bg-image {
+      height: 150px;
+      background-position: 50% 50%;
+      background-size: 110%;
+      border-bottom: 3px solid $main-color;
+      transition: all 300ms linear;
+    }
+    .lesson-icon {
+      height: 140px;
+      width: 140px;
+      border: 3px solid $main-color;
+      border-radius: 50%;
+      margin: -50px auto 0;
+      background-color: #fff;
+      background-size: auto 72%;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    h3 {
+      font-family: "Amatic SC";
+      margin-bottom: 20px;
+    }
+  }
+  .lesson-content-container {
+    display: none;
+    position: relative;
+    .lesson-return {
+      text-align: center;
+      height: 50px;
+      width: 50px;
+      font-size: 40px;
+      border-radius: 50%;
+      border: 3px dotted $main-color2;
+      cursor: pointer;
+      opacity: 0.5;
+      position: absolute;
+      top: -4px;
+      left: -60px;
+      transition: all 200ms;
+      &:hover {
+        opacity: 1;
+      }
+    }
+    .panel-heading {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    .short-info {
+      text-align: center;
+      small {
+        color: $gray;
+      }
+    }
+    .long-info {
+      text-align: justify;
+    }
+    i.fa {
+      display: block;
+      height: 45px;
+      width: 45px;
+      margin: 2px auto 10px;
+      font-size: 28px;
+      line-height: 150%;
+      border-radius: 50%;
+      // padding: 5px;
+      border: 2px solid $main-color2;
+    }
+    @media (max-width: 1350px) {
+      font-size: 14px;
+      .lesson-return {
+        top: -35px;
+        left: 0;
+      }
+    }
+    #go-to-reservation {
+      cursor: pointer;
+    }
+  }
+}
+/* ZAPISY */
+section#reservation {
+  @extend %s-well;
+  min-height: 98vh;
+  background-image: url(../images/olowki1.jpg);
+  background-size: cover;
+  @media (max-width: $screen-sm-min) {
+    height: auto;
+  }
+  .section-header {
+    background-color: fade-out($bg-color, 0.3);
+    border-radius: 15px;
+    margin-top: 0;
+    padding-top: 20px;
+  }
+  .panel-heading {
+    cursor: pointer;
+    &:hover {
+      border-color: $yellow;
+      background-color: fade-out($mint, 0.6);
+    }
+  }
+  h4.panel-title {
+    .pt-img {
+      display: inline-block;
+      width: 45px;
+      @media (max-width: 500px) {
+        display: block;
+        margin: 0 auto;
+        padding-bottom: 3px;
+      }
+    }
+    .pt-text {
+      display: inline-block;
+      width: 300px;
+      @media (max-width: 500px) {
+        width: auto;
+      }
+    }
+    .pt-data {
+      display: inline-block;
+    }
+    .pt-ind {
+      float: right;
+      padding-right: 20px;
+      @media (max-width: 500px) {
+        padding-right: 0px;
+      }
+    }
+    .glyphicon {
+      font-size: 20px;
+      line-height: 150%;
+      transition: all 400ms ease-in-out;
+      transform: rotate(0deg);
+    }
+    &[aria-expanded="true"] {
+      .glyphicon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+#regModal {
+  .modal-body {
+    text-align: justify;
+    font-size: 13px;
+  }
+  .modal-body > ol {
+    list-style-type: upper-roman;
+  }
 }
 
-section#reservation {
-    @extend %s-well;
-    .tabs-left > li{
-        width: 100%;
-    }
+/* Contact Us */
+
+section#contact {
+  @extend %s-well;
+  .contact-icons-wrap {
+    margin-top: 10px;
+    margin-bottom: 50px;
+  }
+}
+.contact-us-detail {
+  .glyphicon {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: $yellow2;
+    border: 1px solid rgba($main-color2, 0.5);
+    border-radius: 50%;
+    box-shadow: 0px 1px 2px 0px rgba(90, 91, 95, 0.15);
+    transition: all 0.3s ease-in-out;
+    width: 88px;
+    height: 88px;
+    line-height: 88px;
+  }
+  &:hover .glyphicon {
+    box-shadow: 0px 8px 15px 0px rgba(90, 91, 95, 0.33);
+    // @extend %subtle-shadow;
+    margin-top: -5px;
+  }
+  a {
+    color: #333;
+  }
+}
+.form-group {
+  margin-bottom: 25px;
+}
+#g-map iframe {
+  height: 330px;
+  width: 100%;
+  border: 1px solid $main-color2;
+}
+
+/* Scroll To Top */
+.scroll-to-top {
+  background-color: $mint;
+  border-radius: 50%;
+  display: none;
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
+  position: fixed;
+  right: 2px;
+  bottom: 50px;
+  z-index: 99;
+  &:hover,
+  &:focus {
+    color: #fff;
+    background-color: darken($mint, 30%);
+  }
+}
+
+footer {
+  background-color: $main-color;
+  color: #fff;
+  padding: 40px 0 15px;
+  margin-top: 80px;
+  font-size: 0.85em;
+  .container {
+    padding-bottom: 20px;
+  }
+  .institution-pane {
+    text-align: center;
+    padding-top: 10px;
+  }
+  ul {
+    list-style-type: none;
+    display: block;
+    margin: 0 auto;
+    padding-top: 30px;
+  }
+  li {
+    display: inline-block;
+  }
+  a,
+  a:hover,
+  a:visited {
+    color: $bg-color;
+  }
+  a:active {
+    color: #ccc;
+  }
+  img {
+    height: 45px;
+    margin-bottom: 5px;
+  }
 }

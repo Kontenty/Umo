@@ -1,6 +1,31 @@
+$main-color: #060e1e; // rgb(6, 14, 30)
+$main-color2: #0a1732; // jasniejszy - granat
+$bg-color: #fbfbff;
+$bg-gray: #f1f1f1;
+$yellow: #f7d22d;
+$yellow2: #efca4e;
+$light-yellow: rgb(253,235,100);
+$dark-yellow: rgb(252,188,2);
+$orange: #ff9500;
+$beige: #edd9c0;
+$spring-green: #89da59;
+$stem: #80bd9e;
+$moss: #aebd38;
+$turqoise: #5bc8a3;
+$mint: rgb(178,197,177);
+$chartreuse: #9bc01c;
+$indigo: #2d4262;
+$blueberry: #063852;
+$main-border: 4px solid lighten($main-color, 10);
+
 %s-well{
-    margin-top: 50px;
     width: 100%;
-    height: 100vh;
-    border-radius: 10px;
+    @include curve-border(200px, 80px, 15px);
+    border: $main-border;
+    // -webkit-border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    // border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+	// border: solid 7px #4c9cef;
+	border-left-color: lighten($main-color, 20);
+	border-right-color: lighten($main-color, 20);
+	border-bottom-color: lighten($main-color, 30);
 }

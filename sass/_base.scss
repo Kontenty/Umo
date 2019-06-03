@@ -1,12 +1,47 @@
 body {
-    font-family: "PT Sans", sans-serif;
-    color: #444;
+    font-family: "Raleway", sans-serif;
+    @media (min-width: $screen-lg-min){
+        font-size: 16px;
+    }
+    color: $main-color;
+    background-color: $bg-gray;
 }
+$u-color: tint($main-color, 20);
 section h1 {
-    font-family: "Lobster";
-    // text-transform: uppercase;
-    font-size: 70px;
-    color: rgba(#000, 0.8);
+    font-family: 'Fredericka the Great';
+    // font-size: 70px;
+    @include responsive-font(4vw, 40px, 60px);
+    line-height: 0.6;    
+    color: lighten($main-color, 10);
     text-align: center;
     margin-bottom: 30px;
+    // position: relative;
+    // background-image: linear-gradient(to bottom, $u-color 33%, transparent 33%, transparent 66%, $u-color 66%, $u-color);
+    // background-position: 0 1.03em;
+    // background-repeat: repeat-x;
+    // background-size: 2px 6px;
 }
+section {
+    margin-top: 80px;
+    @media (max-width:768px) {
+        margin-top: 40px;
+    }
+}
+.well {
+    background-color: $bg-color;
+    margin-bottom: 0;
+}
+.heading-underline {
+    display: block;
+    position: relative;
+    top: -20px;
+    color: $u-color;
+}
+
+.inb {
+    display: inline-block;
+}
+i.fa:hover, i.fa:focus, .glyphicon:hover {
+    text-decoration: none;
+}
+

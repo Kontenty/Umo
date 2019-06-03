@@ -1,4 +1,4 @@
-/* responsive typography */
+//  responsive typography 
 // @inclue responsive-font();
 /// Viewport sized typography with minimum and maximum values
 /// @param {Number}   $responsive  - Viewport-based size
@@ -34,7 +34,7 @@
   font-size: $responsive;
 }
 
-/* MATERIAL STYLE BOX-SHADOW*/
+//  MATERIAL STYLE BOX-SHADOW
 // @include card(n) -- n between 1 and 5
 @function top-shadow($depth) {
   $primary-offset: nth(1.5 3 10 14 19, $depth) * 1px;
@@ -58,4 +58,12 @@
   } @else {
     box-shadow: bottom-shadow($depth), top-shadow($depth);  
   }
+}
+
+@mixin curve-border($num1, $num2, $num3) {   
+  // border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  border-radius: $num1 $num3 $num2 #{$num3}/#{$num3} $num2 $num3 $num1;
+}
+%subtle-shadow {
+	box-shadow: -2px 40px 34px -24px rgba(0, 0, 0, 0.2);
 }
